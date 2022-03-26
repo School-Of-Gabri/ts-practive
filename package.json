@@ -1,0 +1,12 @@
+{
+  "name": "ts-practive",
+  "version": "1.0.0",
+  "description": "typescript fundamentals",
+  "main": "index.js",
+  "author": "AngelODeath",
+  "license": "UNLICENCED",
+  "private": true,
+  "dependencies": {
+    "sirv": "^2.0.2"
+  }
+}
