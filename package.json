@@ -6,7 +6,18 @@
   "author": "AngelODeath",
   "license": "UNLICENCED",
   "private": true,
+  "type": "module",
+  "homepage": "https://github.com/School-Of-Gabri/ts-practive#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/School-Of-Gabri/ts-practive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/School-Of-Gabri/ts-practive/issues"
+  },
+
+  "devDependencies": {
+  },
   "dependencies": {
-    "sirv": "^2.0.2"
   }
 }
