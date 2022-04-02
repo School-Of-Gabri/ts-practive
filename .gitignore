@@ -6,3 +6,4 @@ tmp
 !.vscode/extensions.json
 .idea
 .DS_Store
+dist
