@@ -1,8 +1,7 @@
 /** @format */
 
 /// <reference types="svelte" />
-
-declare module "*.png" {
+declare module "*.svelte" {
     const value: any
     export = value
 }

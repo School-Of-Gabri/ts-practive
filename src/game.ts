@@ -1,13 +1,18 @@
 /** @format */
 
 import * as PIXI from "pixi.js"
-import {buttonFrames} from "./assets/loader"
 
+import {ButtonFrames} from "./lib/Utils"
 import {MenuButton} from "./lib/MenuButton"
 import {Menu} from "./lib/Menu"
 
 export class GameApp {
     private app: PIXI.Application
+    private buttonFrames: ButtonFrames = {
+        button: "./images/Button/button.png",
+        over: "./images/Button/button_over.png",
+        down: "./images/Button/button_down.png",
+    }
 
     constructor(parent: HTMLElement, width: number, height: number) {
         this.app = new PIXI.Application({width, height, backgroundColor: 0x000000})
@@ -15,8 +20,8 @@ export class GameApp {
 
         let loader = new PIXI.Loader()
 
-        Object.keys(buttonFrames).forEach((key) => {
-            loader.add(buttonFrames[key])
+        Object.keys(this.buttonFrames).forEach((key) => {
+            loader.add(this.buttonFrames[key])
         })
 
         // Load assets
@@ -26,7 +31,7 @@ export class GameApp {
     private onAssetsLoaded() {
         let main_menu = new Menu()
 
-        let playBtn = new MenuButton(buttonFrames)
+        let playBtn = new MenuButton(this.buttonFrames)
 
         let canv = this.app.renderer.view
         let but_top = canv.height / 2 - 48
