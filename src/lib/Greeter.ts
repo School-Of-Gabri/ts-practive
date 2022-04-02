@@ -1,18 +1,19 @@
 /** @format */
 
-export default class GreeterApp {
-    target: Element
-    constructor(target?: Element) {
+// export default
+export class Greeter {
+    protected target!: HTMLElement
+    constructor(target?: HTMLElement) {
         if (typeof target !== "undefined") {
             this.target = target
             this.setup()
         }
     }
-    greet(name: string): string {
+    private greet(name: string): string {
         return `Gutentag, ${name}`
     }
 
-    setup(): void {
+    private setup(): void {
         let greet_wrapper = document.createElement("p")
         greet_wrapper.innerText = this.greet("Gabri Francine Botha")
 

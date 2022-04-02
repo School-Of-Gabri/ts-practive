@@ -2,16 +2,16 @@
 
 import {Texture, Sprite} from "pixi.js"
 
-interface ButtonTextures {
+export interface ButtonTextures {
     default: Texture
     over: Texture
     down: Texture
 }
 
 export class MenuButton extends Sprite {
-    isOver: boolean
-    isdown: boolean
-    textures: ButtonTextures
+    protected isOver!: boolean
+    protected isdown!: boolean
+    private textures!: ButtonTextures
 
     constructor(frames: any) {
         let texture_default = Texture.from(frames.button)

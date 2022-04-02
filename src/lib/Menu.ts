@@ -4,7 +4,7 @@ import {Container} from "pixi.js"
 import {MenuButton} from "./MenuButton"
 
 export class Menu extends Container {
-    buttons: MenuButton[]
+    protected buttons!: MenuButton[]
 
     constructor() {
         super()
