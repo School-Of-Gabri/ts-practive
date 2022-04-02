@@ -2,21 +2,26 @@
 
 import * as PIXI from "pixi.js"
 
-import {ButtonFrames} from "./lib/Utils"
+import button_png from "./assets/Button/button.png"
+import button_over_png from "./assets/Button/button_over.png"
+import button_down_png from "./assets/Button/button_down.png"
+
+import type {ButtonFrames} from "./lib/Utils"
 import {MenuButton} from "./lib/MenuButton"
 import {Menu} from "./lib/Menu"
 
 export class GameApp {
     private app: PIXI.Application
     private buttonFrames: ButtonFrames = {
-        button: "./images/Button/button.png",
-        over: "./images/Button/button_over.png",
-        down: "./images/Button/button_down.png",
+        button: button_png,
+        over: button_over_png,
+        down: button_down_png,
     }
 
     constructor(parent: HTMLElement, width: number, height: number) {
         this.app = new PIXI.Application({width, height, backgroundColor: 0x000000})
-        parent.replaceChild(this.app.view as Node, parent.lastElementChild as Node) // Hack for parcel HMR
+        document.body.appendChild(this.app.view)
+        // parent.replaceChild(<HTMLElement> parent.firstChild, this.app.view as Node) // Hack for parcel HMR
 
         let loader = new PIXI.Loader()
 

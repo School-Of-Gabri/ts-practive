@@ -1,6 +1,7 @@
 /** @format */
 
 import {Texture, Sprite} from "pixi.js"
+import type {ButtonFrames} from "./Utils"
 
 export interface ButtonTextures {
     default: Texture
@@ -13,20 +14,21 @@ export class MenuButton extends Sprite {
     protected isdown!: boolean
     private textures!: ButtonTextures
 
-    constructor(frames: any) {
-        let texture_default = Texture.from(frames.button)
-        let texture_over = Texture.from(frames.over)
-        let texture_down = Texture.from(frames.down)
+    constructor(frames: ButtonFrames) {
+        let texture_default: Texture = Texture.from(frames.button)
+        let texture_over: Texture = Texture.from(frames.over)
+        let texture_down: Texture = Texture.from(frames.down)
 
         super(texture_default)
-        this.textures.default = texture_default
-        this.textures.over = texture_over
-        this.textures.down = texture_down
+        this.textures = {
+            default: texture_default,
+            over: texture_over,
+            down: texture_down,
+        }
 
         this.anchor.set(0.5)
         this.interactive = true
         this.buttonMode = true
-        console.log("MenuButton initialized!")
 
         const self = this
         this.on("pointerover", () => {
