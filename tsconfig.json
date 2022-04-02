@@ -1,9 +1,10 @@
 {
     "compilerOptions": {
-        "module": "esnext",
+        "module": "esNext",
         "moduleResolution": "node",
         "outDir": "./public",
-        "target": "es6",
+        // "target": "es6",
+        "target": "esnext",
         // "sourceMap": true,
         "sourceMap": false,
         // "allowJs": true,
