@@ -11,7 +11,7 @@ export class GameApp {
 
     constructor(parent: HTMLElement, width: number, height: number) {
         this.app = new PIXI.Application({width, height, backgroundColor: 0x000000})
-        parent.replaceChild(this.app.view, parent.lastElementChild) // Hack for parcel HMR
+        parent.replaceChild(this.app.view as Node, parent.lastElementChild as Node) // Hack for parcel HMR
 
         let loader = new PIXI.Loader()
 
