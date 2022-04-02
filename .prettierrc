@@ -1,0 +1,23 @@
+# @format
+
+{
+    "arrowParens": "always",
+    "semi": false,
+    "bracketSameLine": true,
+    "bracketSpacing": false,
+    "embeddedLanguageFormatting": "auto",
+    "insertPragma": true,
+    "requirePragma": false,
+    "jsxSingleQuote": false,
+    "singleQuote": false,
+    "printWidth": 90,
+    "proseWrap": "never",
+    "quoteProps": "as-needed",
+    "useTabs": false,
+    "tabWidth": 4,
+    "trailingComma": "es5",
+    "htmlWhitespaceSensitivity": "strict",
+    "svelteStrictMode": true,
+    "svelteIndentScriptAndStyle": false,
+    "plugins": ["prettier-plugin-svelte"],
+}

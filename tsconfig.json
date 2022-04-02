@@ -1,14 +1,32 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "allowJs": true,
-        "outDir": "public",
-        "lib": ["es6", "dom"],
-        "types": ["reflect-metadata"],
-        "module": "commonjs",
+        "module": "esnext",
         "moduleResolution": "node",
+        "outDir": "./public",
+        "target": "es6",
+        // "sourceMap": true,
+        "sourceMap": false,
+        // "allowJs": true,
+        "allowJs": true,
+
+        "rootDir": "src",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true,
+        "allowSyntheticDefaultImports": true,
+
+        "lib": [
+            "es6",
+            // "es2017",
+            // "es2021",
+            "dom"
+        ],
+        "types": [],
+        "typeRoots": ["node_modules/@types"]
     },
-    "include": ["./src/**/*"]
+    // "extends": "@tsconfig/svelte/tsconfig.json",
+    "include": ["src/**/*", "node_modules/@types"],
+    "exclude": [".git", "node_modules", "public"]
 }
