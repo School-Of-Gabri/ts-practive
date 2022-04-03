@@ -1,15 +1,10 @@
 /** @format */
-export class Point {
+export class Point extends PIXI.Point {
     static fromOtherPoint(point: Point): Point {
         return new Point(point.x, point.y)
     }
-
-    x!: number
-    y!: number
-
     constructor(x: number, y: number) {
-        this.x = x
-        this.y = y
+        super(x, y)
     }
 
     toString(): string {

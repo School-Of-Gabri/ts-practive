@@ -7,7 +7,6 @@ export class Grid {
 
     constructor(rows: number = 10, cols: number = 10, block_size: number = 10) {
         this.grid = []
-
         ;([...Array(rows)] as number[]).map((_: number, row_idx: number) => {
             let row_of_cells: Point[] = Array(cols)
             ;([...Array(cols)] as number[]).map((_: number, col_idx: number) => {
