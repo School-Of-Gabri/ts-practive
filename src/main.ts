@@ -1,5 +1,6 @@
 /** @format */
 
+import "./global.css"
 import App from "./App.svelte"
 
 let app_target: HTMLElement | null = document.getElementById("app")
