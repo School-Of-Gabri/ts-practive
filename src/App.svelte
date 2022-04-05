@@ -4,10 +4,9 @@ import {onMount} from "svelte"
 // import {Pixi, Text} from "svelte-pixi"
 
 import {Greeter} from "./lib/Greeter"
-import {GameApp as Game} from "./game"
 
 let name: string = "Anonymous"
-let my_g_app, my_pixi_game
+let my_g_app
 
 const set_name = () => {
     name = "Gabri Botha"
@@ -18,13 +17,6 @@ onMount(async () => {
 
     my_g_app = new Greeter(document.getElementById("greeter_section") as HTMLElement)
     console.log("Greeter has been created!", my_g_app)
-
-    my_pixi_game = new Game(
-        document.getElementById("game_section") as HTMLElement,
-        640,
-        480
-    )
-    console.log("Game has been created!", my_pixi_game)
 })
 </script>
 
@@ -35,7 +27,6 @@ onMount(async () => {
         >Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to
         build Svelte apps.</p>
     <div id="greeter_section"></div>
-    <div id="game_section"></div>
 </main>
 
 <style>
