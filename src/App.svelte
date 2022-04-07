@@ -1,7 +1,7 @@
 <script lang="ts">
 import {onMount} from "svelte"
 
-import {BmButton} from "@bulmil/svelte"
+// import {BmButton} from "@bulmil/svelte"
 
 // import {Pixi, Text} from "svelte-pixi"
 
@@ -29,8 +29,8 @@ onMount(async () => {
         >Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to
         build Svelte apps.</p>
     <div id="greeter_section"></div>
-    <!-- 
-    <BmButton></BmButton> -->
+
+    <!-- <BmButton></BmButton> -->
 </main>
 
 <style>
