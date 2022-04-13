@@ -2,6 +2,7 @@
 
 @import "bulma/css/bulma.css";
 
-.blue {
-    color: blue;
+html {
+    overflow-y: auto;
+    overflow-x: hidden;
 }
