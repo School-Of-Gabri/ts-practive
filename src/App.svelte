@@ -1,56 +1,103 @@
 <script lang="ts">
-import {onMount} from "svelte"
+// import PixiMain from "./components/Main/Pixi.svelte"
+// import SvgMain from "./components/Main/Pixi.svelte"
 
-// import {BmButton} from "@bulmil/svelte"
+import MazeGame from "./components/Games/Mazing.svelte"
 
-// import {Pixi, Text} from "svelte-pixi"
+import type {SvelteComponent} from "svelte"
 
-import {Greeter} from "./lib/Greeter"
+import Fa from "svelte-fa"
+import {faHome} from "@fortawesome/free-solid-svg-icons"
+import Bbutton from "./components/Bulma/Button.svelte"
 
-let name: string = "Anonymous"
-let my_g_app
+let menu_selection: String = ""
 
-const set_name = () => {
-    name = "Gabri Botha"
+function menu_selected(event: CustomEvent) {
+    let selected_action: String = event.detail
+    console.log(`App.svelte::select(${selected_action})`)
+    menu_selection = selected_action
 }
 
-onMount(async () => {
-    name = "Steve Smith"
+// initialise modal state and content
+// let showModal: boolean = false
+// let modalContent: SvelteComponent
 
-    my_g_app = new Greeter(document.getElementById("greeter_section") as HTMLElement)
-    console.log("Greeter has been created!", my_g_app)
-})
+// pass in component as parameter and toggle modal state
+// function toggleModal(component: SvelteComponent) {
+//     modalContent = component
+//     showModal = !showModal
+// }
 </script>
 
-<main>
-    <h1>Hello {name}!</h1>
-    <button on:click="{set_name}">Set Name!</button>
-    <p
-        >Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to
-        build Svelte apps.</p>
-    <div id="greeter_section"></div>
+<section class="hero is-primary is-fullheight">
+    <div class="hero-head">
+        <!-- START NAV -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item brand-text" href="/index.html">
+                        <img
+                            src="http://bulma.io/images/bulma-type-white.png"
+                            alt="Logo" />
+                    </a>
+                    <div class="navbar-burger burger" data-target="navMenu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div id="navMenu" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item" href="#">
+                            <Fa icon="{faHome}" />
+                            <span>Home</span>
+                        </a>
+                        <a class="navbar-item" href="admin.html"> Projects </a>
+                    </div>
 
-    <!-- <BmButton></BmButton> -->
-</main>
+                    <div class="navbar-end">
+                        <a class="navbar-item" href="admin.html"> Docs </a>
+                        <a class="navbar-item" href="admin.html"> Github </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- END NAV -->
+    </div>
+
+    <div class="hero-body">
+        <div class="container is-fullheight-with-navbar has-text-centered is-centered">
+            <div class="columns is-desktop">
+                <div class="column is-half">
+                    <div class="columns">
+                        <div class="column is-6 is-offset-3">
+                            <h1 class="title">TS Practive</h1>
+                            <p class="subtitle">Select a game to play below:</p>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+                            <Bbutton action="Boxes" on:selection="{menu_selected}" />
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+                            <Bbutton action="Pong" on:selection="{menu_selected}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <MazeGame />
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-3">
+                    <p>{menu_selection}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <style>
-main {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-}
-
-h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-}
-
-@media (min-width: 640px) {
-    main {
-        max-width: none;
-    }
-}
 </style>
