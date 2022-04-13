@@ -1,6 +1,6 @@
 /** @format */
 
-import {Point} from "./Point"
+import type {Point} from "./Point.js"
 
 export class Box {
     protected point_tl!: Point

@@ -1,7 +1,7 @@
 /** @format */
 
 import {Container} from "pixi.js"
-import type {MenuButton} from "./MenuButton"
+import type {MenuButton} from "./MenuButton.js"
 
 export class Menu extends Container {
     protected buttons!: MenuButton[]

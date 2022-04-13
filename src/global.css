@@ -2,7 +2,6 @@
 
 @import "bulma/css/bulma.css";
 
-html {
-    overflow-y: auto;
-    overflow-x: hidden;
+body {
+    background-color: #eeeeee;
 }

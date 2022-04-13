@@ -1,4 +1,9 @@
 <script lang="ts">
+import Hud from "../Boxes/Hud.svelte"
+import Box from "../Boxes/Box.svelte"
+import Line from "../Boxes/Line.svelte"
+import Point from "../Boxes/Point.svelte"
+
 import {onMount} from "svelte"
 
 import {GameApp as Game} from "../../game"

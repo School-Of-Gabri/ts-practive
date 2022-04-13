@@ -1,7 +1,7 @@
 /** @format */
 
 import {Texture, Sprite} from "pixi.js"
-import type {ButtonFrames} from "./Utils"
+import type {ButtonFrames} from "./Utils.js"
 
 export interface ButtonTextures {
     default: Texture

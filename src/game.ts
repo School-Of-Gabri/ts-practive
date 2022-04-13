@@ -6,9 +6,9 @@ import button_png from "./assets/Button/button.png"
 import button_over_png from "./assets/Button/button_over.png"
 import button_down_png from "./assets/Button/button_down.png"
 
-import type {ButtonFrames} from "./lib/Utils"
-import {MenuButton} from "./lib/MenuButton"
-import {Menu} from "./lib/Menu"
+import type {ButtonFrames} from "./lib/Utils.js"
+import {MenuButton} from "./lib/MenuButton.js"
+import {Menu} from "./lib/Menu.js"
 
 export class GameApp {
     private app: PIXI.Application

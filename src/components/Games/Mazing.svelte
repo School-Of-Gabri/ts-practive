@@ -1,15 +1,17 @@
 <script type="ts">
 import {onMount} from "svelte"
 
-import FancyMazeBuilder from "../../lib/FancyMazeBuilder"
+import FancyMazeBuilder from "../../lib/Mazing/FancyMazeBuilder"
 import Bbutton from "../Bulma/Button.svelte"
-import Mazing from "../../lib/Mazing"
-var Maze, MazeGame
+import {Mazing} from "../../lib/Mazing/Mazing"
+
+let Maze: FancyMazeBuilder
+let MazeGame: Mazing
 
 const makeMaze = (id, width, height, speech = false) => {
     Maze = new FancyMazeBuilder(width, height)
     Maze.display(id)
-    MazeGame = new Mazing("maze")
+    MazeGame = new (Mazing as any)("maze")
     if (speech) {
         MazeGame.enableSpeech()
     }
@@ -32,14 +34,14 @@ onMount(async () => {
     <p class="panel-heading"> Mazing </p>
 
     <div class="panel-block">
-        <div class="columns is-mobile is-centered">
+        <div class="columns is-desktop m-auto">
             <div class="column is-half">
                 <div id="maze_container"><!-- --></div>
             </div>
         </div>
     </div>
     <div class="panel-block">
-        <div class="columns is-mobile is-centered m-auto">
+        <div class="columns is-desktop is-centered m-auto">
             <div class="column is-half">
                 <Bbutton action="New game!" on:selection="{menu_selected}" />
             </div>

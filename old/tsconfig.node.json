@@ -4,10 +4,19 @@
         "module": "esNext",
         "moduleResolution": "nodenext",
         "outDir": "./public",
+        // "target": "es6",
         "target": "esnext",
+        // "sourceMap": true,
         "sourceMap": false,
+        // "allowJs": true,
         "rootDir": "src",
         "baseUrl": ".",
+        /**
+         * Typecheck JS in `.svelte` and `.js` files by default.
+         * Disable checkJs if you'd like to use dynamic types in JS.
+         * Note that setting allowJs false does not prevent the use
+         * of JS in `.svelte` files.
+         */
         "allowJs": true,
         "checkJs": true,
 
@@ -22,16 +31,16 @@
         "useDefineForClassFields": true,
         "resolveJsonModule": true,
 
-        "lib": ["es6", "dom"],
+        "lib": [
+            "es6",
+            // "es2017",
+            // "es2021",
+            "dom"
+        ],
         "types": [],
         "typeRoots": ["node_modules/@types"]
     },
     "extends": "@tsconfig/svelte/tsconfig.json",
-    "include": [
-        "src/**/*.d.ts",
-        "src/**/*.ts",
-        "src/**/*.js",
-        "src/**/*.svelte",
-        "node_modules/@types"
-    ]
+    // "include": ["src/**/*", "node_modules/@types"],
+    "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }

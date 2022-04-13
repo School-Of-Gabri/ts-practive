@@ -4,7 +4,15 @@
 // Please acknowledge use of this code by including this header.
 
 class MazeBuilder {
-    constructor(width, height) {
+    width: number
+    height: number
+    cols: number
+    rows: number
+    maze: Array<Array<Array<string>>>
+    totalSteps: number = -1
+    parentDiv: Element | null = null
+
+    constructor(width: number, height: number) {
         this.width = width
         this.height = height
 
@@ -50,30 +58,32 @@ class MazeBuilder {
         this.partition(1, this.height - 1, 1, this.width - 1)
     }
 
-    initArray(value) {
-        return new Array(this.rows).fill().map(() => new Array(this.cols).fill(value))
+    initArray(value?: any) {
+        return new Array(this.rows)
+            .fill(undefined)
+            .map(() => new Array(this.cols).fill(value))
     }
 
-    rand(min, max) {
+    rand(min: number, max: number) {
         return min + Math.floor(Math.random() * (1 + max - min))
     }
 
-    posToSpace(x) {
+    posToSpace(x: number) {
         return 2 * (x - 1) + 1
     }
 
-    posToWall(x) {
+    posToWall(x: number) {
         return 2 * x
     }
 
-    inBounds(r, c) {
+    inBounds(r: number, c: number) {
         if (typeof this.maze[r] == "undefined" || typeof this.maze[r][c] == "undefined") {
             return false // out of bounds
         }
         return true
     }
 
-    shuffle(array) {
+    shuffle(array: Array<boolean>) {
         // sauce: https://stackoverflow.com/a/12646864
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1))
@@ -82,7 +92,7 @@ class MazeBuilder {
         return array
     }
 
-    partition(r1, r2, c1, c2) {
+    partition(r1: number, r2: number, c1: number, c2: number) {
         // create partition walls
         // ref: https://en.wikipedia.org/wiki/Maze_generation_algorithm#Recursive_division_method
 
@@ -152,10 +162,9 @@ class MazeBuilder {
         this.partition(horiz + 1, r2, vert + 1, c2)
     }
 
-    isGap(...cells) {
-        return cells.every((array) => {
-            let row, col
-            ;[row, col] = array
+    isGap(...cells: Array<Array<number>>) {
+        return cells.every((array: unknown) => {
+            let [row, col] = array as number[]
             if (this.maze[row][col].length > 0) {
                 if (!this.maze[row][col].includes("door")) {
                     return false
@@ -165,7 +174,7 @@ class MazeBuilder {
         })
     }
 
-    countSteps(array, r, c, val, stop) {
+    countSteps(array: any[][], r: number, c: number, val: number, stop: string) {
         if (!this.inBounds(r, c)) {
             return false // out of bounds
         }
@@ -226,13 +235,12 @@ class MazeBuilder {
     }
 
     placeKey() {
-        let fr, fc
-        ;[fr, fc] = this.getKeyLocation()
+        let [fr, fc] = this.getKeyLocation()
 
         this.maze[fr][fc] = ["key"]
     }
 
-    display(id) {
+    display(id: string) {
         this.parentDiv = document.getElementById(id)
 
         if (!this.parentDiv) {
@@ -246,7 +254,7 @@ class MazeBuilder {
 
         const container = document.createElement("div")
         container.id = "maze"
-        container.dataset.steps = this.totalSteps
+        container.dataset.steps = `${this.totalSteps}`
 
         this.maze.forEach((row) => {
             let rowDiv = document.createElement("div")

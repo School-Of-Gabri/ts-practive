@@ -3,10 +3,12 @@
 // Original JavaScript code by Chirp Internet: chirpinternet.eu
 // Please acknowledge use of this code by including this header.
 
-import MazeBuilder from "./MazeBuilder"
+import MazeBuilder from "./MazeBuilder.js"
 
 class FancyMazeBuilder extends MazeBuilder {
-    constructor(width, height) {
+    declare maze: string[][][]
+
+    constructor(width: number, height: number) {
         super(width, height)
 
         this.removeNubbins()
@@ -15,7 +17,7 @@ class FancyMazeBuilder extends MazeBuilder {
         this.placeKey()
     }
 
-    isA(value, ...cells) {
+    isA(value: any, ...cells: Array<Array<number>>) {
         return cells.every((array) => {
             let row, col
             ;[row, col] = array
@@ -122,8 +124,8 @@ class FancyMazeBuilder extends MazeBuilder {
         })
     }
 
-    placeSentinels(percent = 100) {
-        percent = parseInt(percent, 10)
+    placeSentinels(percent: string | number = 100) {
+        percent = parseInt(`${percent}`, 10)
 
         if (percent < 1 || percent > 100) {
             percent = 100

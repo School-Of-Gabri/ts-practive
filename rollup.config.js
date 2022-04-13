@@ -1,14 +1,14 @@
 /** @format */
 
-// import commonjs from '@rollup/plugin-commonjs'
-import resolve from "@rollup/plugin-node-resolve"
+import commonjs from "@rollup/plugin-commonjs"
+import nodeResolve from "@rollup/plugin-node-resolve"
 import typescript from "@rollup/plugin-typescript"
 import css from "rollup-plugin-css-only"
-// import livereload from 'rollup-plugin-livereload'
+import livereload from "rollup-plugin-livereload"
 import svelte from "rollup-plugin-svelte"
 // import { terser } from 'rollup-plugin-terser'
 import sveltePreprocess from "svelte-preprocess"
-// import { copy } from '@web/rollup-plugin-copy'
+import postcss from "rollup-plugin-postcss"
 import path from "path"
 import fs from "fs"
 
@@ -56,6 +56,17 @@ function copy(from, to, overwrite = false) {
     }
 }
 
+function typeCheck() {
+    return {
+        writeBundle() {
+            require("child_process").spawn("svelte-check", {
+                stdio: ["ignore", "inherit", "inherit"],
+                shell: true,
+            })
+        },
+    }
+}
+
 export default {
     input: "./src/main.ts",
     plugins: [
@@ -64,27 +75,20 @@ export default {
             inlineSources: !production,
         }),
         typeCheck(),
-        copy("./static", "./public"),
-        // commonjs(),
+        copy("./static", "./dist"),
+        commonjs(),
         svelte({
             include: "src/**/*.svelte",
             preprocess: sveltePreprocess({
                 sourceMap: !production,
+                typescript: true,
                 postcss: {
                     plugins: [require("autoprefixer")()],
                 },
+                emitCss: true,
             }),
-            // preprocess: [sveltePreprocess({
-            // 	typescript: true,
-            // 	sourceMap: !production,
-            // 	postcss: false
-            // })],
-            // emitCss: true,
             compilerOptions: {
                 dev: !production,
-                // css: css => {
-                //     css.write("bundle.css")
-                // },
                 // generate: 'ssr',
                 // hydratable: true
             },
@@ -93,20 +97,14 @@ export default {
             output: "bundle.css",
         }),
 
-        resolve({
-            // jsnext: true,
+        nodeResolve({
+            jsnext: true,
             browser: true,
-            // dedupe: ['svelte']
+            dedupe: ["svelte"],
         }),
-        // copy({
-        // targets: [
-        // 	{ src: './static/index.html', dest: './public' },
-        // 	{ src: ['./static/favicon.png', './static/favicon.ico'], dest: './public' }
-        // ]
-        // patterns: './static/**/*.{html,png,ico}'
-        // }),
+        postcss(),
         !production && serve(),
-        // !production && livereload('./public'),
+        !production && livereload("."),
         // production && terser()
     ],
     output: {
@@ -119,15 +117,4 @@ export default {
     watch: {
         clearScreen: false,
     },
-}
-
-function typeCheck() {
-    return {
-        writeBundle() {
-            require("child_process").spawn("svelte-check", {
-                stdio: ["ignore", "inherit", "inherit"],
-                shell: true,
-            })
-        },
-    }
 }

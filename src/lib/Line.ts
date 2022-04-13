@@ -1,6 +1,6 @@
 /** @format */
 
-import {Point} from "./Point"
+import type {Point} from "./Point.js"
 
 export class Line {
     protected point_a!: Point
