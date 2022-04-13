@@ -7,7 +7,7 @@ import css from "rollup-plugin-css-only"
 // import livereload from 'rollup-plugin-livereload'
 import svelte from "rollup-plugin-svelte"
 // import { terser } from 'rollup-plugin-terser'
-// import sveltePreprocess from 'svelte-preprocess'
+import sveltePreprocess from "svelte-preprocess"
 // import { copy } from '@web/rollup-plugin-copy'
 import path from "path"
 import fs from "fs"
@@ -63,9 +63,17 @@ export default {
             sourceMap: !production,
             inlineSources: !production,
         }),
+        typeCheck(),
+        copy("./static", "./public"),
         // commonjs(),
         svelte({
             include: "src/**/*.svelte",
+            preprocess: sveltePreprocess({
+                sourceMap: !production,
+                postcss: {
+                    plugins: [require("autoprefixer")()],
+                },
+            }),
             // preprocess: [sveltePreprocess({
             // 	typescript: true,
             // 	sourceMap: !production,
@@ -75,7 +83,7 @@ export default {
             compilerOptions: {
                 dev: !production,
                 // css: css => {
-                // 	css.write("public/bundle.css")
+                //     css.write("bundle.css")
                 // },
                 // generate: 'ssr',
                 // hydratable: true
@@ -90,8 +98,6 @@ export default {
             browser: true,
             // dedupe: ['svelte']
         }),
-        // typeCheck(),
-        copy("./static", "./public"),
         // copy({
         // targets: [
         // 	{ src: './static/index.html', dest: './public' },
